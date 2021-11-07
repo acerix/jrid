@@ -58,7 +58,7 @@ const Canvas: FunctionalComponent<CanvasProps> = (props: CanvasProps) => {
       }
       if (onResize) onResize(ctx)
     }
-    window.addEventListener('resize', handleResize)
+    // window.addEventListener('resize', handleResize)
     const resizeObserver = new ResizeObserver(handleResize)
     resizeObserver.observe(canvas.parentElement||canvas)
     handleResize()
@@ -131,7 +131,7 @@ const Canvas: FunctionalComponent<CanvasProps> = (props: CanvasProps) => {
       else {
         window.cancelAnimationFrame(loopCallbackID)
       }
-      window.removeEventListener('resize', handleResize)
+      // window.removeEventListener('resize', handleResize)
       resizeObserver.unobserve(canvas)
       canvas.removeEventListener('blur', handleBlur)
       canvas.removeEventListener('focus', handleFocus)
