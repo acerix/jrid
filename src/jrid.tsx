@@ -434,17 +434,18 @@ export const GridOverlay: FunctionalComponent<GridOverlayProps> = (props: GridOv
             
       case 'KeyQ':
       case 'Numpad7':
-        translate[0] -= translateFactor * zoomFactor
+        translate[0] += translateFactor * zoomFactor
         translate[1] -= translateFactor * zoomFactor
         break
 
       case 'Space':
+      case 'KeyO':
       case 'Numpad5':
         translate[0] = -canvasCenter[0]
         translate[1] = -canvasCenter[1]
         break
     
-      case 'KeyO':
+      case 'KeyX':
       case 'Numpad0':
         translate[0] = translate[1] = 0
         break
@@ -471,22 +472,22 @@ export const GridOverlay: FunctionalComponent<GridOverlayProps> = (props: GridOv
 
       case 'NumpadDivide':
       case 'BracketRight':
-        scale[0] *= logBase
-        scale[1] *= logBase
-        if (setScale) {
-          setScale(scale[0], scale[1])
-          render()
-        } 
-        break
-    
-      case 'NumpadMultiply':
-      case 'BracketLeft':
         scale[0] /= logBase
         scale[1] /= logBase
         if (setScale) {
           setScale(scale[0], scale[1])
           render()
-        } 
+        }
+        break
+    
+      case 'NumpadMultiply':
+      case 'BracketLeft':
+      scale[0] *= logBase
+      scale[1] *= logBase
+      if (setScale) {
+        setScale(scale[0], scale[1])
+        render()
+      } 
         break
   
       case 'Period':
