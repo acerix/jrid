@@ -11,6 +11,7 @@
 
 A dynamic grid overlay.
 
+
 ## Install
 
 ```bash
@@ -39,6 +40,8 @@ const grid = new Jrid(
   }
 )
 </script>
+```
+
 
 [CodePen Demo](https://codepen.io/acerix/pen/ZEyxZvM?editors=0010)
 
