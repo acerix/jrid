@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Jrid Browser Test</title>
+    <link rel="stylesheet" href="./dist/esbuild/browser.css">
+    <style>
+      #canvas {
+        width: 100%;
+        height: 420px;
+        overflow: hidden;
+        resize: both;
+        box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+        position: relative;
+      }
+      :fullscreen > #canvas {
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Jrid Browser Test</h1>
+    <p><em>v<span id="version">0.0.0</span></em></p>
+    <div id="canvas"></div>
+    <script src="./dist/esbuild/browser.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('version').innerText = Jrid.version
+        new Jrid(document.getElementById('canvas'))
+      })
+    </script>
+  </body>
+</html>

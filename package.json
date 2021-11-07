@@ -1,0 +1,92 @@
+{
+  "name": "jrid",
+  "version": "0.0.1",
+  "description": "A dynamic grid overlay.",
+  "author": "Dylan Ferris <dylan@psilly.com>",
+  "contributors": [
+    {
+      "name": "Dylan Ferris",
+      "email": "dylan@psilly.com",
+      "uri": "https://psilly.com/"
+    }
+  ],
+  "homepage": "https://github.com/acerix/jrid#readme",
+  "repository": "https://github.com/acerix/jrid",
+  "bugs": {
+    "url": "https://github.com/acerix/jrid/issues"
+  },
+  "license": "GPL-3.0",
+  "keywords": [
+    "grid",
+    "cartesian",
+    "integer",
+    "bigint"
+  ],
+  "main": "./dist/tsc/main.js",
+  "types": "./dist/tsc/main.d.ts",
+  "browser": "./dist/esbuild/browser.js",
+  "bin": {
+    "jrid": "./dist/esbuild/cli.js"
+  },
+  "scripts": {
+    "dev": "yarn test --watch",
+    "cli": "ts-node src/cli.ts",
+    "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
+    "test": "jest",
+    "example": "node example.js",
+    "clean": "rm -rf dist build package",
+    "ts-node": "ts-node",
+    "docs": "typedoc --entryPoints src/main.ts",
+    "prebuild-x": "echo -e \"export default '`node -p \"require('./package.json').version\"`'\" > src/version.ts",
+    "build": "tsc -p tsconfig.json",
+    "build-all": "yarn build && yarn esbuild-node && yarn esbuild-browser",
+    "esbuild-browser": "esbuild src/browser.ts --bundle --minify --sourcemap=external --outfile=dist/esbuild/browser.js",
+    "esbuild-browser:dev": "esbuild src/browser.ts --bundle --outfile=dist/esbuild/browser.js",
+    "esbuild-browser:watch": "esbuild src/browser.ts --bundle --watch --outfile=dist/esbuild/browser.js",
+    "esbuild-node": "esbuild src/cli.ts --bundle --platform=node --minify --sourcemap=external --outfile=dist/esbuild/cli.js",
+    "esbuild-node:dev": "esbuild src/cli.ts --bundle --sourcemap=external --outfile=dist/esbuild/cli.js",
+    "esbuild-node:watch": "esbuild src/cli.ts --bundle --watch --sourcemap=external --outfile=dist/esbuild/cli.js",
+    "prepublish": "yarn lint && yarn test --coverage && yarn clean && yarn build-all && yarn docs"
+  },
+  "devDependencies": {
+    "@types/enzyme": "*",
+    "@types/jest": "*",
+    "@types/node": "*",
+    "@typescript-eslint/eslint-plugin": "*",
+    "@typescript-eslint/parser": "*",
+    "enzyme": "*",
+    "enzyme-adapter-preact-pure": "*",
+    "esbuild": "*",
+    "eslint": "*",
+    "jest": "*",
+    "jest-preset-preact": "*",
+    "ts-jest": "*",
+    "ts-node": "*",
+    "typedoc": "*",
+    "typedoc-plugin-missing-exports": "*",
+    "typescript": "*"
+  },
+  "dependencies": {
+    "preact": "*",
+    "preact-render-to-string": "*",
+    "tslib": "*"
+  },
+  "jest": {
+    "preset": "jest-preset-preact",
+    "setupFiles": [
+      "<rootDir>/tests/__mocks__/browserMocks.ts",
+      "<rootDir>/tests/__mocks__/setupTests.ts"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/sw.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 0,
+        "functions": 3,
+        "lines": 3,
+        "statements": 3
+      }
+    }
+  }
+}
