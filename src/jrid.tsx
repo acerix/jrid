@@ -482,12 +482,12 @@ export const GridOverlay: FunctionalComponent<GridOverlayProps> = (props: GridOv
     
       case 'NumpadMultiply':
       case 'BracketLeft':
-      scale[0] *= logBase
-      scale[1] *= logBase
-      if (setScale) {
-        setScale(scale[0], scale[1])
-        render()
-      } 
+        scale[0] *= logBase
+        scale[1] *= logBase
+        if (setScale) {
+          setScale(scale[0], scale[1])
+          render()
+        } 
         break
   
       case 'Period':
