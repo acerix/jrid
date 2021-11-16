@@ -106,12 +106,6 @@ const Canvas: FunctionalComponent<CanvasProps> = (props: CanvasProps) => {
       draw(ctx, frameCount)
     }
 
-    // expose methods to parent
-    // @todo seems parents calling their children's methods is react antipattern, better way?
-    if (props.canvasMethodRefs) {
-      props.canvasMethodRefs.render = render
-    }
-
     const whenReady = (): void => {
       if (animate===false) {
         setTimeout(render)

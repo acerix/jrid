@@ -36,7 +36,7 @@ const grid = new Jrid(
   document.getElementById('grid'),
   {
     locale: 'fr-CA',
-    fps: 10
+    fpsLimit: 10
   }
 )
 </script>
