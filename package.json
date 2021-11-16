@@ -18,6 +18,7 @@
   "license": "GPL-3.0",
   "keywords": [
     "grid",
+    "jrid",
     "cartesian",
     "integer",
     "bigint"

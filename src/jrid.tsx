@@ -8,7 +8,7 @@ style['jrid'] = 'jrid' // hack @todo why is this not imported?
 const logBase = 10
 const zoomFactor = logBase**(1/13)
 const microZoomFactor = zoomFactor**(1/32)
-const minimumGridSpacing = 24
+const minimumJridSpacing = 24
 const μ = .9
 const translateFactor = 16
 let free = true
@@ -35,14 +35,14 @@ type TranslateFunction = (x: number, y: number) => void
 
 type ScaleFunction = (x: number, y: number) => void
 
-export interface GridOverlayProps {
+export interface JridOverlayProps {
   canvasMethodRefs?: CanvasMethods;
   setTranslate?: TranslateFunction;
   setScale?: ScaleFunction;
   initialScale?: number;
 }
 
-export const GridOverlay: FunctionalComponent<GridOverlayProps> = (props: GridOverlayProps) => {
+export const JridOverlay: FunctionalComponent<JridOverlayProps> = (props: JridOverlayProps) => {
   const { setTranslate, setScale, ...rest } = props
   const ref = createRef()
   const canvasCenter = [0, 0]
@@ -120,8 +120,8 @@ export const GridOverlay: FunctionalComponent<GridOverlayProps> = (props: GridOv
     }
     
     // exponent for axis labels ⏨(n+x)
-    const powerX = Math.ceil(Math.log10(minimumGridSpacing * scale[0]))
-    const powerY = Math.ceil(Math.log10(minimumGridSpacing * scale[1]))
+    const powerX = Math.ceil(Math.log10(minimumJridSpacing * scale[0]))
+    const powerY = Math.ceil(Math.log10(minimumJridSpacing * scale[1]))
     const factorX = 10**powerX
     const factorY = 10**powerY
 
@@ -144,7 +144,7 @@ export const GridOverlay: FunctionalComponent<GridOverlayProps> = (props: GridOv
     const yMiddleLineIndex = Math.floor(yLineCount / 2)
 
     ctx.beginPath()
-    // draw x-axis grid lines
+    // draw x-axis Jrid lines
     for (let i=0; i<=xLineCount; i++) {
       const x = firstXPosition + i * spaceX
       ctx.moveTo(x, 0)
@@ -158,7 +158,7 @@ export const GridOverlay: FunctionalComponent<GridOverlayProps> = (props: GridOv
         }
       }
     }
-    // draw y-axis grid lines
+    // draw y-axis Jrid lines
     for (let i=0; i<=yLineCount; i++) {
       const y = firstYPosition + ctx.canvas.height - i * spaceY
       ctx.moveTo(0, y)
@@ -169,7 +169,7 @@ export const GridOverlay: FunctionalComponent<GridOverlayProps> = (props: GridOv
           const label = axisLabelFormat(j + xIndexOffset, powerX)
           const x = firstXPosition + j * spaceX
 
-          // rotate: to avoid overlap with long labels and small grid
+          // rotate: to avoid overlap with long labels and small Jrid
           // @todo better to rotate once then draw all labels?
           ctx.save()
           ctx.translate(x + xLabelOffset[0], y + xLabelOffset[1])
@@ -552,7 +552,7 @@ const JridDefaultState: JridState = {
   setScale: undefined
 }
 
-interface JridSettings {
+export interface JridSettings {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [index: string]: any;
   locale?: string;
@@ -574,7 +574,7 @@ class Jrid {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     for (const k in settings) this.state[k] = settings[k]
     render(
-      <GridOverlay setTranslate={this.state.setTranslate} setScale={this.state.setScale} />,
+      <JridOverlay setTranslate={this.state.setTranslate} setScale={this.state.setScale} />,
       this.el
     )
   }

@@ -24,7 +24,7 @@ yarn add jrid
 
 ```typescript
 import {Jrid} from 'jrid'
-const grid = new Jrid()
+const jrid = new Jrid()
 ```
 
 ### Script Tags
@@ -32,8 +32,8 @@ const grid = new Jrid()
 ```html
 <script src="https://unpkg.com/jrid"></script>
 <script>
-const grid = new Jrid(
-  document.getElementById('grid'),
+const jrid = new Jrid(
+  document.getElementById('jrid'),
   {
     locale: 'fr-CA',
     fpsLimit: 10
