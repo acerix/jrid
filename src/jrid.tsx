@@ -3,7 +3,7 @@ import { createRef, FunctionalComponent, h, render } from 'preact'
 import { useEffect } from 'preact/hooks'
 import Canvas, { CanvasMethods } from './canvas'
 import style from './style.css'
-style['jrid'] = 'jrid' // hack @todo why is this not imported?
+style['jrid'] = 'jrid' // @hack @todo why is this not imported?
 
 const logBase = 10
 const zoomFactor = logBase**(1/13)

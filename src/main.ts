@@ -1,7 +1,7 @@
-import Jrid, { JridOverlay } from './jrid'
+import Jrid from './jrid'
 
 module.exports = Jrid
 
 export default Jrid
 
-export {JridOverlay}
+export {JridOverlay} from './jrid'
