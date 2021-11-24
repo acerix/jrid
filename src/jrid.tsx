@@ -2,8 +2,7 @@ import VERSION from './version'
 import { createRef, FunctionalComponent, h, render } from 'preact'
 import { useEffect } from 'preact/hooks'
 import Canvas, { CanvasMethods } from './canvas'
-import style from './style.css'
-style['jrid'] = 'jrid' // @hack @todo why is this not imported?
+// import style from './style.css'
 
 const logBase = 10
 const zoomFactor = logBase**(1/13)
@@ -528,7 +527,7 @@ export const JridOverlay: FunctionalComponent<JridOverlayProps> = (props: JridOv
   return (
     <Canvas 
       ref={ref}
-      className={style.jrid}
+      className="jrid"
       init={init}
       onResize={onResize}
       draw={draw}
