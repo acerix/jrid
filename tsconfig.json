@@ -23,16 +23,8 @@
     "experimentalDecorators": true,
     "sourceMap": true,
     "removeComments": true,
-    "outDir": "./dist/tsc/",
-    "types": [
-      "node",
-      "jest"
-    ],
-    "lib": [
-      "ES6",
-      "DOM"
-    ]
+    "outDir": "./dist/tsc/"
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*", "tests/**/*"],
   "exclude": ["node_modules"]
 }
