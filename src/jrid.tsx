@@ -8,7 +8,7 @@ const logBase = 10
 const zoomFactor = logBase**(1/13)
 const microZoomFactor = zoomFactor**(1/32)
 const minimumJridSpacing = 24
-const μ = .9
+const μ = .75
 const translateFactor = 16
 let free = true
 
