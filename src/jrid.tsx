@@ -81,7 +81,7 @@ export const JridOverlay: FunctionalComponent<JridOverlayProps> = (props: JridOv
 
     contextHeight = ctx.canvas.height
     const halfWidth = ctx.canvas.width/2
-    const halfHeight = ctx.canvas.height/2
+    const halfHeight = ctx.canvas.height/2  
     if (canvasCenter[0] === 0) {
       // initially translate (0,0) to center of canvas
       canvasCenter[0] = halfWidth
