@@ -58,19 +58,21 @@ export const Canvas: FunctionalComponent<CanvasProps> = (props: CanvasProps) => 
     }
   }, [])
 
-  // Update canvas dimensions when window is resized
+  // Update canvas dimensions when resized
   useEffect(() => {
     const canvas = ref.current as HTMLCanvasElement
     const ctx = getContext ? getContext(canvas) : canvas.getContext('2d') as CanvasRenderingContext2D
+    const container = ctx.canvas.parentNode as HTMLElement
     const handleResize = (): void => {
-      ctx.canvas.width = window.innerWidth
-      ctx.canvas.height = window.innerHeight
+      ctx.canvas.width = container.clientWidth
+      ctx.canvas.height = container.clientHeight
       if (onResize) onResize(ctx)
     }
-    window.addEventListener('resize', handleResize)
+    const observer = new ResizeObserver(handleResize)
+    observer.observe(container)
     handleResize()
     return (): void => {
-      window.removeEventListener('resize', handleResize)
+      observer.disconnect()
     }
   }, [ref])
 
