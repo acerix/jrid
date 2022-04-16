@@ -168,8 +168,7 @@ export const JridOverlay: FunctionalComponent<JridOverlayProps> = (props: JridOv
           const label = axisLabelFormat(j + xIndexOffset, powerX)
           const x = firstXPosition + j * spaceX
 
-          // rotate: to avoid overlap with long labels and small Jrid
-          // @todo better to rotate once then draw all labels?
+          // rotate, to avoid overlap with long labels and small Jrid
           ctx.save()
           ctx.translate(x + xLabelOffset[0], y + xLabelOffset[1])
           ctx.rotate(-Math.PI/6)
