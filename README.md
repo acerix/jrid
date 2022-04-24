@@ -45,6 +45,10 @@ const jrid = new Jrid(
 
 [CodePen Demo](https://codepen.io/acerix/pen/ZEyxZvM?editors=0010)
 
+## Screenshots
+
+![Screenshot of basic demo](/screenshot.png?raw=true "Screenshot of basic demo")
+
 ## Read the Docs
 
 [Documentation](https://acerix.github.io/jrid/)
