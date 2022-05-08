@@ -1,4 +1,4 @@
-import { FunctionalComponent, createRef, h } from 'preact'
+import preact, { FunctionalComponent, createRef } from 'preact'
 import { useEffect } from 'preact/hooks'
 
 type GetContextFunction = (canvas: HTMLCanvasElement) => CanvasRenderingContext2D
@@ -145,7 +145,7 @@ export const Canvas: FunctionalComponent<CanvasProps> = (props: CanvasProps) => 
     }
   }, [ref])
 
-  return <canvas ref={ref} class={className} {...rest} />
+  return <canvas ref={ref} {...rest} />
 }
 
 export default Canvas

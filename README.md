@@ -1,5 +1,7 @@
 # Jrid
 
+A dynamic grid overlay in JavaScript.
+
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
 [![Build Status][build-image]][build-url]
@@ -8,9 +10,6 @@
 [![Scrutinizer Code Quality][scrutinizer-image]][scrutinizer-url]
 [![Language Grade][lgtm-image]][lgtm-url]
 [![GPL 3.0][license-image]](LICENSE)
-
-A dynamic grid overlay.
-
 
 ## Install
 
@@ -42,12 +41,11 @@ const jrid = new Jrid(
 </script>
 ```
 
-
 [CodePen Demo](https://codepen.io/acerix/pen/ZEyxZvM?editors=0010)
 
 ## Screenshots
 
-![Screenshot of basic demo](/screenshot.png?raw=true "Screenshot of basic demo")
+![Screenshot of basic demo](./screenshot.png?raw=true "Screenshot of basic demo")
 
 ## Read the Docs
 
@@ -57,19 +55,24 @@ const jrid = new Jrid(
 
 *   `yarn install`: Install dependencies
 *   `yarn dev`: Run tests when source files are changed
-*   `yarn cli`: Start a command line interface
-*   `yarn lint`: Lint with ESLint
-*   `yarn test`: Run Jest and Enzyme tests
-*   `yarn clean`: Delete previous build
-*   `yarn docs`: Build documentation
+*   `yarn lint --fix`: Lint with ESLint
+*   `yarn test`: Run Jest tests
+*   `yarn doc`: Build documentation
 *   `yarn build`: Production build
-*   `yarn build-all`: Production build all the things
 *   `yarn prepublish`: Prepare for publishing
 *   `yarn publish`: Publish to npm
 
 ## Feedback
 
-* Please report bug and feature requests as [GitHub Issues](https://github.com/acerix/jrid/issues)
+* Report bug and feature requests as [GitHub Issues](https://github.com/acerix/jrid/issues)
+
+## Sponsorship
+
+<<<<<<< HEAD
+* [Sponsor Beepody](https://github.com/sponsors/acerix)
+=======
+* [Sponsor Jrid](https://github.com/sponsors/acerix)
+>>>>>>> ffd32fd (get it to build)
 
 [npm-image]: https://img.shields.io/npm/v/jrid.svg
 [npm-url]: https://npmjs.org/package/jrid

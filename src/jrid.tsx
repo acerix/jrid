@@ -1,5 +1,5 @@
 import VERSION from './version'
-import { createRef, FunctionalComponent, h, render } from 'preact'
+import preact, { createRef, FunctionalComponent, render } from 'preact'
 import { useEffect } from 'preact/hooks'
 import Canvas, { CanvasMethods } from './canvas'
 // import style from './style.css'
@@ -81,8 +81,11 @@ export const JridOverlay: FunctionalComponent<JridOverlayProps> = (props: JridOv
 
     contextHeight = ctx.canvas.height
     const halfWidth = ctx.canvas.width/2
-    const halfHeight = ctx.canvas.height/2  
-    if (canvasCenter[0] === 0) {
+    const halfHeight = ctx.canvas.height/2
+    if (typeof canvasCenter[0] === 'undefined' || typeof canvasCenter[1] === 'undefined') {
+      console.error('Not too centred there bud!')
+    }
+    else if (canvasCenter[0] === 0) {
       // initially translate (0,0) to center of canvas
       canvasCenter[0] = halfWidth
       canvasCenter[1] = halfHeight
@@ -114,8 +117,31 @@ export const JridOverlay: FunctionalComponent<JridOverlayProps> = (props: JridOv
 
     // glide
     if (free) {
-      translate[0] += velocity[0]
-      translate[1] -= velocity[1]
+      if (typeof velocity[0] === 'undefined' || typeof velocity[1] === 'undefined') {
+        console.error('Not too veloed there bud!')
+      }
+      else {
+        translate[0] += velocity[0]
+        translate[1] -= velocity[1]
+      }
+    }
+
+    // fu typescript
+    if (typeof scale[0] === 'undefined' || typeof scale[1] === 'undefined') {
+      console.error('Not too velo there bud!')
+      return
+    }
+    if (typeof translate[0] === 'undefined' || typeof translate[1] === 'undefined') {
+      console.error('Not too trans there bud!')
+      return
+    }
+    if (typeof yLabelOffset[0] === 'undefined' || typeof yLabelOffset[1] === 'undefined') {
+      console.error('Not too why offset there bud!')
+      return
+    }
+    if (typeof xLabelOffset[0] === 'undefined' || typeof xLabelOffset[1] === 'undefined') {
+      console.error('Not too X offset there bud!')
+      return
     }
     
     // exponent for axis labels ⏨(n+x)
@@ -224,6 +250,9 @@ export const JridOverlay: FunctionalComponent<JridOverlayProps> = (props: JridOv
     canvasEl.addEventListener('contextmenu', handleContextMenu)
 
     const handleMouseMove = (event: MouseEvent): void => {
+      if (typeof lastMousePosition[0] === 'undefined' || typeof lastMousePosition[1] === 'undefined') return
+      if (typeof translate[0] === 'undefined' || typeof translate[1] === 'undefined') return
+      if (typeof scale[0] === 'undefined' || typeof scale[1] === 'undefined') return
       const dx = lastMousePosition[0] - event.clientX
       const dy = lastMousePosition[1] - event.clientY
       const flingFactor = 4
@@ -254,10 +283,12 @@ export const JridOverlay: FunctionalComponent<JridOverlayProps> = (props: JridOv
           (lastMousePosition[0] + translate[0]) * scale[0],
           (contextHeight - lastMousePosition[1] + translate[1]) * scale[1]
         ]
+        if (typeof zoomTo[0] === 'undefined' || typeof zoomTo[1] === 'undefined') return
         const zoomLastPosition = [
           zoomTo[0] / scale[0] - translate[0],
           zoomTo[1] / scale[1] - translate[1]
         ]
+        if (typeof zoomLastPosition[0] === 'undefined' || typeof zoomLastPosition[1] === 'undefined') return
         scale[0] *= microZoomFactor**dx
         scale[1] *= microZoomFactor**-dy
         if (setScale) {
@@ -267,6 +298,7 @@ export const JridOverlay: FunctionalComponent<JridOverlayProps> = (props: JridOv
           zoomTo[0] / scale[0] - translate[0],
           zoomTo[1] / scale[1] - translate[1]
         ]
+        if (typeof zoomToPosition[0] === 'undefined' || typeof zoomToPosition[1] === 'undefined') return
         translate[0] -= zoomLastPosition[0] - zoomToPosition[0] - dx
         translate[1] += zoomToPosition[1] - zoomLastPosition[1] - dy
         if (setTranslate) {
@@ -280,6 +312,7 @@ export const JridOverlay: FunctionalComponent<JridOverlayProps> = (props: JridOv
     canvasEl.addEventListener('mousemove', handleMouseMove)
 
     const handleTouchDown = (event: TouchEvent): boolean => {
+      if (typeof event.touches[0] === 'undefined') return false
       lastTouch1Position[0] = event.touches[0].pageX
       lastTouch1Position[1] = event.touches[0].pageY
       velocity[0] = velocity[1] = 0
@@ -297,6 +330,11 @@ export const JridOverlay: FunctionalComponent<JridOverlayProps> = (props: JridOv
     canvasEl.addEventListener('touchend', handleTouchUp)
 
     const handleTouchMove = (event: TouchEvent): void => {
+      if (typeof lastTouch1Position[0] === 'undefined' || typeof lastTouch1Position[1] === 'undefined') return
+      if (typeof lastTouch2Position[0] === 'undefined' || typeof lastTouch2Position[1] === 'undefined') return
+      if (typeof translate[0] === 'undefined' || typeof translate[1] === 'undefined') return
+      if (typeof scale[0] === 'undefined' || typeof scale[1] === 'undefined') return
+      if (typeof event.touches[0] === 'undefined' || typeof event.touches[1] === 'undefined') return
       if (lastTouch1Position[0] > -1) {
         if (event.touches.length===1) {
           const dx = lastTouch1Position[0] - event.touches[0].pageX
@@ -324,14 +362,17 @@ export const JridOverlay: FunctionalComponent<JridOverlayProps> = (props: JridOv
               (x1 + x2) / 2,
               (y1 + y2) / 2
             ]
+            if (typeof touchMidpoint[0] === 'undefined' || typeof touchMidpoint[1] === 'undefined') return
             const zoomTo = [
               (touchMidpoint[0] + translate[0]) * scale[0],
               (contextHeight - touchMidpoint[1] + translate[1]) * scale[1]
             ]
+            if (typeof zoomTo[0] === 'undefined' || typeof zoomTo[1] === 'undefined') return
             const zoomLastPosition = [
               zoomTo[0] / scale[0] - translate[0],
               zoomTo[1] / scale[1] - translate[1]
             ]
+            if (typeof zoomLastPosition[0] === 'undefined' || typeof zoomLastPosition[1] === 'undefined') return
             scale[0] *= zoomModifier
             scale[1] *= zoomModifier
             if (setScale) {
@@ -341,6 +382,7 @@ export const JridOverlay: FunctionalComponent<JridOverlayProps> = (props: JridOv
               zoomTo[0] / scale[0] - translate[0],
               zoomTo[1] / scale[1] - translate[1]
             ]
+            if (typeof zoomToPosition[0] === 'undefined' || typeof zoomToPosition[1] === 'undefined') return
             translate[0] -= zoomLastPosition[0] - zoomToPosition[0]
             translate[1] += zoomToPosition[1] - zoomLastPosition[1]
             if (setTranslate) {
@@ -359,14 +401,19 @@ export const JridOverlay: FunctionalComponent<JridOverlayProps> = (props: JridOv
 
     const handleWheel = (event: WheelEvent): void => {
       const zoomModifier = event.deltaY > 0 ? zoomFactor : 1/zoomFactor
+      if (typeof lastMousePosition[0] === 'undefined' || typeof lastMousePosition[1] === 'undefined') return
+      if (typeof translate[0] === 'undefined' || typeof translate[1] === 'undefined') return
+      if (typeof scale[0] === 'undefined' || typeof scale[1] === 'undefined') return
       const zoomTo = [
         (lastMousePosition[0] + translate[0]) * scale[0],
         (contextHeight - lastMousePosition[1] + translate[1]) * scale[1]
       ]
+      if (typeof zoomTo[0] === 'undefined' || typeof zoomTo[1] === 'undefined') return
       const zoomLastPosition = [
         zoomTo[0] / scale[0] - translate[0],
         zoomTo[1] / scale[1] - translate[1]
       ]
+      if (typeof zoomLastPosition[0] === 'undefined' || typeof zoomLastPosition[1] === 'undefined') return
       scale[0] *= zoomModifier
       scale[1] *= zoomModifier
       if (setScale) {
@@ -376,6 +423,7 @@ export const JridOverlay: FunctionalComponent<JridOverlayProps> = (props: JridOv
         zoomTo[0] / scale[0] - translate[0],
         zoomTo[1] / scale[1] - translate[1]
       ]
+      if (typeof zoomToPosition[0] === 'undefined' || typeof zoomToPosition[1] === 'undefined') return
       translate[0] -= zoomLastPosition[0] - zoomToPosition[0]
       translate[1] += zoomToPosition[1] - zoomLastPosition[1]
       if (setTranslate) {
@@ -386,6 +434,8 @@ export const JridOverlay: FunctionalComponent<JridOverlayProps> = (props: JridOv
     canvasEl.addEventListener('wheel', handleWheel)
 
     const handleKeyDown = (event: KeyboardEvent): void => {
+      if (typeof canvasCenter[0] === 'undefined' || typeof canvasCenter[1] === 'undefined') return
+      if (typeof scale[0] === 'undefined' || typeof scale[1] === 'undefined') return
       switch (event.code) {
   
       case 'KeyW':
@@ -491,7 +541,7 @@ export const JridOverlay: FunctionalComponent<JridOverlayProps> = (props: JridOv
       case 'Period':
       case 'NumpadDecimal':
         {
-          const initialScale = rest.initialScale ?? 8/canvasCenter[0]
+          const initialScale = rest.initialScale ?? 8/ ( canvasCenter[0] ?? 1 )
           scale[0] = scale[1] = initialScale
           if (setScale) {
             setScale(scale[0], scale[1])
@@ -546,8 +596,8 @@ interface JridState {
 
 const JridDefaultState: JridState = {
   locale: 'en-CA',
-  setTranslate: undefined,
-  setScale: undefined
+  setTranslate: function() {alert('t!')},
+  setScale: function() {alert('s!')}
 }
 
 export interface JridSettings {
@@ -571,10 +621,18 @@ class Jrid {
     this.el = el
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     for (const k in settings) this.state[k] = settings[k]
-    render(
-      <JridOverlay setTranslate={this.state.setTranslate} setScale={this.state.setScale} />,
-      this.el
+    if (typeof this.state.setTranslate === 'undefined') {
+      render(<div>no trans!?</div>, el)
+    }
+    else if (typeof this.state.setScale === 'undefined') {
+      render(<div>no scale!?</div>, el)
+    }
+    else {
+      render(
+        <JridOverlay setTranslate={this.state.setTranslate} setScale={this.state.setScale} />,
+        this.el
     )
+    }
   }
 
   static get version(): string {

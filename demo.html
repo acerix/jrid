@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Jrid Browser Test</title>
-    <link rel="stylesheet" href="./dist/esbuild/browser.css">
+    <script src="./dist/index.umd.min.js"></script>
     <style>
       #canvas {
         width: 100%;
@@ -25,15 +25,17 @@
     </style>
   </head>
   <body>
+
     <h1>Jrid Browser Test</h1>
-    <p><em>v<span id="version">0.0.0</span></em></p>
-    <div id="canvas"></div>
-    <script src="./dist/esbuild/browser.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('version').innerText = Jrid.version
+    <p><em>jrid v<span id="version">0.0.0</span></em></p>
+
+    <script>      
+      document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('version').innerText = jrid.version
         new Jrid(document.getElementById('canvas'))
       })
     </script>
+
   </body>
 </html>
+
