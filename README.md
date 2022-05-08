@@ -68,11 +68,7 @@ const jrid = new Jrid(
 
 ## Sponsorship
 
-<<<<<<< HEAD
-* [Sponsor Beepody](https://github.com/sponsors/acerix)
-=======
 * [Sponsor Jrid](https://github.com/sponsors/acerix)
->>>>>>> ffd32fd (get it to build)
 
 [npm-image]: https://img.shields.io/npm/v/jrid.svg
 [npm-url]: https://npmjs.org/package/jrid
@@ -89,3 +85,4 @@ const jrid = new Jrid(
 [lgtm-image]: https://img.shields.io/lgtm/alerts/g/acerix/jrid.svg
 [lgtm-url]: https://lgtm.com/projects/g/acerix/jrid/
 [license-image]: https://img.shields.io/npm/l/jrid.svg
+
