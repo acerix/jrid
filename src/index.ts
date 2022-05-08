@@ -8,3 +8,4 @@ class jrid {
 
 export default jrid
 export { version }
+export * from './jrid'
