@@ -1,5 +1,4 @@
 {
   "out": "./docs",
-  "name": "jrid",
-  "tsconfig": "./tsconfig.bundle.json"
+  "name": "jrid"
 }

@@ -1,0 +1,26 @@
+html, body {
+	font: 14px 'Linux Biolinum', 'Helvetica Neue', arial, sans-serif;
+	font-weight: 400;
+}
+
+#canvas {
+	width: 100%;
+	height: 420px;
+	overflow: hidden;
+	resize: both;
+	box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+	position: relative;
+}
+
+#canvas > canvas {
+	background: white;
+}
+
+:fullscreen > #canvas {
+	height: 100%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}

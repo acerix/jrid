@@ -1,6 +1,6 @@
 # Jrid
 
-A dynamic grid overlay in JavaScript.
+A dynamic grid overlay for JavaScript.
 
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
@@ -22,7 +22,7 @@ yarn add jrid
 ### Build System
 
 ```typescript
-import {Jrid} from 'jrid'
+import Jrid from 'jrid'
 const jrid = new Jrid()
 ```
 
@@ -31,11 +31,11 @@ const jrid = new Jrid()
 ```html
 <script src="https://unpkg.com/jrid"></script>
 <script>
-const jrid = new Jrid(
+const grid = new jrid.Jrid(
   document.getElementById('jrid'),
   {
-    locale: 'fr-CA',
-    fpsLimit: 10
+    locale: 'fr',
+    fps: 10
   }
 )
 </script>
@@ -54,9 +54,9 @@ const jrid = new Jrid(
 ## CLI Commands
 
 *   `yarn install`: Install dependencies
-*   `yarn dev`: Run tests when source files are changed
+*   `yarn dev`: Test in browser, rebuilding when source files are changed
 *   `yarn lint --fix`: Lint with ESLint
-*   `yarn test`: Run Jest tests
+*   `yarn test`: Run tests
 *   `yarn doc`: Build documentation
 *   `yarn build`: Production build
 *   `yarn prepublish`: Prepare for publishing

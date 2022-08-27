@@ -1,11 +1,10 @@
-import version from './version'
+import habitat from "preact-habitat"
 
-class jrid {
-  static get version(): string {
-    return version
-  }
-}
+import Widget from "./component"
 
-export default jrid
-export { version }
-export * from './jrid'
+const _habitat = habitat(Widget)
+
+_habitat.render({
+  selector: '[data-widget-host="habitat"]',
+  clean: true,
+})
