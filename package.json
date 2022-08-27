@@ -33,7 +33,8 @@
     "doc": "typedoc src/index.ts",
     "prebuild": "echo \"export default '$(node -p \"require('./package.json').version\")'\" > src/version.ts",
     "build": "yarn build:widget",
-    "prepublish": "yarn prebuild && yarn doc && yarn lint && yarn test --coverage && yarn build"
+    "prepublish": "yarn prebuild && yarn doc && yarn lint && yarn test --coverage && yarn build",
+    "publish": "yarn npm publish"
   },
   "files": [
     "dist"
