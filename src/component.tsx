@@ -85,7 +85,6 @@ export interface Props {
 }
 
 function defaultVec2UpdateHandler(x: number, y: number): void {
-  // console.log('Update', x, y)
   void(x | y)
 }
 

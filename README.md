@@ -23,7 +23,11 @@ yarn add jrid
 
 ```typescript
 import Jrid from 'jrid'
-const jrid = new Jrid()
+<div data-widget-host="jrid" class="jrid" >
+  <script type="text/props">
+    { "locale": "fr" }
+  </script>
+</div>
 ```
 
 ### Script Tags
@@ -32,11 +36,10 @@ const jrid = new Jrid()
 <div id="jrid"></div>
 <script src="https://unpkg.com/jrid"></script>
 <script>
-const grid = jrid.init(
+jrid.init(
   document.getElementById('jrid'),
   {
-    locale: 'fr',
-    fps: 30
+    locale: 'fr'
   }
 )
 </script>
