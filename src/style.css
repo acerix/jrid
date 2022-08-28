@@ -3,7 +3,7 @@ html, body {
 	font-weight: 400;
 }
 
-#canvas {
+.jrid {
 	width: 100%;
 	height: 420px;
 	overflow: hidden;
@@ -12,11 +12,11 @@ html, body {
 	position: relative;
 }
 
-#canvas > canvas {
+.jrid > canvas {
 	background: white;
 }
 
-:fullscreen > #canvas {
+:fullscreen > .jrid {
 	height: 100%;
 	position: absolute;
 	top: 0;

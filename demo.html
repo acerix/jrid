@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Jrid Demo</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="./src/style.css">
+  </head>
+  <body>
+    <h1>Jrid Demo</h1>
+    <p><em>jrid v<span id="version">0.0.0</span></em></p>
+    <div id="jrid" class="jrid"></div>
+    <script src="./dist/index.umd.js"></script>
+    <script>
+      document.getElementById('version').innerText = jrid.version
+      jrid.init(document.getElementById('jrid'))
+    </script>
+  </body>
+</html>

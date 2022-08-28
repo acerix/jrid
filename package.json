@@ -1,13 +1,15 @@
 {
   "name": "jrid",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A dynamic grid overlay.",
   "keywords": [
     "grid",
     "cartesian",
     "coordinate",
-    "plane"
+    "plane",
+    "canvas"
   ],
+  "type": "module",
   "homepage": "https://github.com/acerix/jrid#readme",
   "repository": {
     "type": "git",
@@ -16,9 +18,15 @@
   "bugs": {
     "url": "https://github.com/acerix/jrid/issues"
   },
-  "source": "src/index.ts",
+  "source": "src/index.tsx",
   "main": "dist/index.js",
   "module": "dist/index.module.js",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "require": "./dist/index.js",
+    "default": "./dist/index.modern.mjs"
+  },
+  "types": "./dist/index.d.ts",
   "umd:main": "dist/index.umd.js",
   "browser": "dist/index.umd.js",
   "cdn": "dist/index.umd.js",
@@ -26,13 +34,14 @@
   "jsdelivr": "dist/index.umd.js",
   "scripts": {
     "dev": "preact watch --template src/template.html",
+    "build:bundle": "microbundle build --external none --compress",
     "build:widget": "microbundle build",
     "build:lib": "microbundle build -i src/component.tsx",
     "lint": "eslint '{src,tests}/**/*.{ts,tsx}'",
     "test": "jest",
-    "doc": "typedoc src/index.ts",
+    "doc": "typedoc src/index.tsx",
     "prebuild": "echo \"export default '$(node -p \"require('./package.json').version\")'\" > src/version.ts",
-    "build": "yarn build:widget",
+    "build": "yarn build:bundle",
     "prepublish": "yarn prebuild && yarn doc && yarn lint && yarn test --coverage && yarn build",
     "publish": "yarn npm publish"
   },
@@ -47,7 +56,7 @@
     ],
     "ignorePatterns": [
       "dist/",
-      "doct/",
+      "docs/",
       "build/"
     ],
     "rules": {

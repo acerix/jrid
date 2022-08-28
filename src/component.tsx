@@ -1,3 +1,4 @@
+export * from 'preact/hooks'
 import { VNode, h, RefObject } from 'preact'
 import { useEffect, useLayoutEffect, useRef } from 'preact/hooks'
 import VERSION from './version'
@@ -74,7 +75,7 @@ export interface CanvasProps {
   canvasMethodRefs?: CanvasMethods;
 }
 
-interface Props {
+export interface Props {
   locale?: string;
   canvasMethodRefs?: CanvasMethods;
   setTranslate?: TranslateFunction;

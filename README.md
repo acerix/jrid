@@ -29,13 +29,14 @@ const jrid = new Jrid()
 ### Script Tags
 
 ```html
+<div id="jrid"></div>
 <script src="https://unpkg.com/jrid"></script>
 <script>
-const grid = new jrid.Jrid(
+const grid = jrid.init(
   document.getElementById('jrid'),
   {
     locale: 'fr',
-    fps: 10
+    fps: 30
   }
 )
 </script>
