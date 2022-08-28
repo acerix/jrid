@@ -19,4 +19,4 @@ function init(el: HTMLElement, props: Props) {
   preactRender(<Widget {...props} />, el)
 }
 
-export { jrid, init, version }
+export { jrid, version, init, Widget }

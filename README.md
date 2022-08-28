@@ -19,17 +19,6 @@ yarn add jrid
 
 ## Usage
 
-### Build System
-
-```typescript
-import Jrid from 'jrid'
-<div data-widget-host="jrid" class="jrid" >
-  <script type="text/props">
-    { "locale": "fr" }
-  </script>
-</div>
-```
-
 ### Script Tags
 
 ```html
@@ -43,6 +32,18 @@ jrid.init(
   }
 )
 </script>
+```
+
+### Build System
+
+```typescript
+import {Widget as Jrid} from 'jrid'
+
+export default function App(): VNode {
+  return (
+    <Jrid />
+  )
+}
 ```
 
 [CodePen Demo](https://codepen.io/acerix/pen/ZEyxZvM?editors=0011)
