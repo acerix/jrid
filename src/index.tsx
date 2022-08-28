@@ -5,7 +5,7 @@ import Widget, { Props } from './component'
 import version from './version'
 
 habitat(Widget).render({
-  selector: '.jrid',
+  selector: '[data-widget-host="jrid"]',
   clean: true
 })
 
