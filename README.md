@@ -42,7 +42,7 @@ const grid = jrid.init(
 </script>
 ```
 
-[CodePen Demo](https://codepen.io/acerix/pen/ZEyxZvM?editors=0010)
+[CodePen Demo](https://codepen.io/acerix/pen/ZEyxZvM?editors=0011)
 
 ## Screenshots
 

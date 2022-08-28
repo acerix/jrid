@@ -19,11 +19,11 @@
     "url": "https://github.com/acerix/jrid/issues"
   },
   "source": "src/index.tsx",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
   "module": "dist/index.module.js",
   "exports": {
     "types": "./dist/index.d.ts",
-    "require": "./dist/index.js",
+    "require": "./dist/index.cjs",
     "default": "./dist/index.modern.mjs"
   },
   "types": "./dist/index.d.ts",
